@@ -1,1 +1,43 @@
-<p class="font-bold">login works!</p>
+<form
+  [formGroup]="haveAcount ? loginForm : registerForm"
+  class="flex flex-col"
+  (ngSubmit)="onFormSubmitted()"
+>
+  @if (!haveAcount) {
+  <label for="name">Name:</label>
+  <input
+    type="text"
+    formControlName="name"
+    placeholder="name"
+    class="border-2 rounded-md border-black"
+  />
+  }
+  <label for="email">Email:</label>
+  <input
+    type="text"
+    formControlName="email"
+    placeholder="email"
+    class="border-2 rounded-md border-black"
+  />
+  <label for="passord">Password:</label>
+  <input
+    type="password"
+    formControlName="password"
+    placeholder="password"
+    class="border-2 rounded-md border-black"
+  />
+
+  <button
+    class="bg-gray-900 text-white m-2 rounded-lg"
+    [disabled]="haveAcount ? loginForm.invalid : registerForm.invalid"
+    type="submit"
+  >
+    {{ haveAcount ? "Login" : "Signup" }}
+  </button>
+  <p>
+    {{ haveAcount ? "Do not have an account yet?" : "Alredy have an account?"
+    }}<button type="button" (click)="onSwitchMode()">
+      {{ haveAcount ? "Reggister Here" : "Login Here" }}
+    </button>
+  </p>
+</form>

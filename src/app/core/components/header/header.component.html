@@ -1,8 +1,11 @@
 <header class="w-[320px] bg-slate-800 text-white h-[50px] mr-auto ml-auto">
-  <nav>
-    @if (isLogin) {
-    <a href="#">Users</a>
+  <nav class="flex justify-around">
+    @if (token) {
+    <a [routerLink]="['/users']">Users</a>
+    <a [routerLink]="['/login']">Profil</a>
+    <a [routerLink]="['/login']" (click)="logout()">LogOut</a>
+    } @if (!token) {
+    <a [routerLink]="['/login']">LogIn</a>
     }
-    <a href="/login">Login</a>
   </nav>
 </header>
